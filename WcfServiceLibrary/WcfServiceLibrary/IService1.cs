@@ -5,12 +5,33 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
+using System.Net.Security; // ProtectionLevel
+
 // 서비스 계약의 기본 정의가 포함되어 있습니다.
 namespace WcfServiceLibrary
 {
     [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples")]
     public interface ICalculator
     {
+        // 요청/회신 패턴
+        [OperationContractAttribute]
+        string Hello(string greeting);
+        // 단방향 패턴
+        [OperationContractAttribute(IsOneWay = true)]
+        void Hello2(string greeting);
+        // 메시지 보호 수준 지정
+        [OperationContractAttribute(ProtectionLevel = ProtectionLevel.EncryptAndSign)] // 암호화되고 서명된 메시지에 반환
+        string Hello3(string greeting);
+        // SOAP 오류를 '선언된' 상태로 설정
+        [OperationContract]
+        [FaultContractAttribute(
+            typeof(GreetingFault),
+            Action = "http://localhost:8888/GreetingFault",
+            ProtectionLevel = ProtectionLevel.EncryptAndSign
+        )]
+        string FaultContractSampleMethod(string msg);
+
+
         [OperationContract]
         double Add(double n1, double n2);
         [OperationContract]
@@ -57,5 +78,56 @@ namespace WcfServiceLibrary
             get { return stringValue; }
             set { stringValue = value; }
         }
+    }
+
+    [DataContractAttribute]
+    public class GreetingFault
+    {
+        private string report;
+
+        public GreetingFault(string message)
+        {
+            this.report = message;
+        }
+
+        [DataMemberAttribute]
+        public string Message
+        {
+            get { return this.report; }
+            set { this.report = value; }
+        }
+    }
+
+    // Define a duplex service contract.
+    // A duplex contract consists of two interfaces.
+    // The primary interface is used to send messages from client to service.
+    // The callback interface is used to send messages from service back to client.
+    // ICalculatorDuplex allows one to perform multiple operations on a running result.
+    // The result is sent back after each operation on the ICalculatorCallback interface.
+    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples",
+                     SessionMode = SessionMode.Required, CallbackContract = typeof(ICalculatorDuplexCallback))] // 이중 계약 패턴 콜백
+    public interface ICalculatorDuplex
+    {
+        [OperationContract(IsOneWay = true)]
+        void Clear();
+        [OperationContract(IsOneWay = true)]
+        void AddTo(double n);
+        [OperationContract(IsOneWay = true)]
+        void SubtractFrom(double n);
+        [OperationContract(IsOneWay = true)]
+        void MultiplyBy(double n);
+        [OperationContract(IsOneWay = true)]
+        void DivideBy(double n);
+    }
+
+    // The callback interface is used to send messages from service back to client.
+    // The Equals operation will return the current result after each operation.
+    // The Equation operation will return the complete equation after Clear() is called.
+    public interface ICalculatorDuplexCallback
+    {
+        [OperationContract(IsOneWay = true)]
+        void Equals(double result);
+        [OperationContract(IsOneWay = true)]
+        void Equation(string eqn);
     }
 }

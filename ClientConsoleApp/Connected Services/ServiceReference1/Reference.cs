@@ -9,11 +9,85 @@
 //------------------------------------------------------------------------------
 
 namespace ClientConsoleApp.ServiceReference1 {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GreetingFault", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceLibrary")]
+    [System.SerializableAttribute()]
+    public partial class GreetingFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://Microsoft.ServiceModel.Samples", ConfigurationName="ServiceReference1.ICalculator")]
     public interface ICalculator {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/HelloResponse")]
+        string Hello(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/HelloResponse")]
+        System.Threading.Tasks.Task<string> HelloAsync(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello2")]
+        void Hello2(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello2")]
+        System.Threading.Tasks.Task Hello2Async(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello3", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/Hello3Response")]
+        string Hello3(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Hello3", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/Hello3Response")]
+        System.Threading.Tasks.Task<string> Hello3Async(string greeting);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/FaultContractSampleMethod", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/FaultContractSampleMethodRespon" +
+            "se")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ClientConsoleApp.ServiceReference1.GreetingFault), Action="http://localhost:8888/GreetingFault", Name="GreetingFault", Namespace="http://schemas.datacontract.org/2004/07/WcfServiceLibrary")]
+        string FaultContractSampleMethod(string msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/FaultContractSampleMethod", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/FaultContractSampleMethodRespon" +
+            "se")]
+        System.Threading.Tasks.Task<string> FaultContractSampleMethodAsync(string msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/ICalculator/Add", ReplyAction="http://Microsoft.ServiceModel.Samples/ICalculator/AddResponse")]
         double Add(double n1, double n2);
@@ -65,6 +139,38 @@ namespace ClientConsoleApp.ServiceReference1 {
         
         public CalculatorClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string Hello(string greeting) {
+            return base.Channel.Hello(greeting);
+        }
+        
+        public System.Threading.Tasks.Task<string> HelloAsync(string greeting) {
+            return base.Channel.HelloAsync(greeting);
+        }
+        
+        public void Hello2(string greeting) {
+            base.Channel.Hello2(greeting);
+        }
+        
+        public System.Threading.Tasks.Task Hello2Async(string greeting) {
+            return base.Channel.Hello2Async(greeting);
+        }
+        
+        public string Hello3(string greeting) {
+            return base.Channel.Hello3(greeting);
+        }
+        
+        public System.Threading.Tasks.Task<string> Hello3Async(string greeting) {
+            return base.Channel.Hello3Async(greeting);
+        }
+        
+        public string FaultContractSampleMethod(string msg) {
+            return base.Channel.FaultContractSampleMethod(msg);
+        }
+        
+        public System.Threading.Tasks.Task<string> FaultContractSampleMethodAsync(string msg) {
+            return base.Channel.FaultContractSampleMethodAsync(msg);
         }
         
         public double Add(double n1, double n2) {

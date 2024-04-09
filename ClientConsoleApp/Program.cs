@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 using ClientConsoleApp.ServiceReference1;
 
+using ClientConsoleApp.DuflexServiceReference1;
+using System.ServiceModel;
+
 namespace ClientConsoleApp
 {
     class Program
@@ -52,6 +55,66 @@ namespace ClientConsoleApp
             Console.WriteLine("\nPress <Enter> to terminate the client.");
             Console.ReadLine();
             client.Close();
+
+
+            // 이중 계약 패턴 클라이언트
+            InstanceContext site = new InstanceContext(new CallbackHandler());
+            CalculatorDuplexClient duplexClient = new CalculatorDuplexClient(site);
+            try
+            {
+                // Call the AddTo service operation.
+                double value = 100.00D;
+                duplexClient.AddTo(value);
+
+                // Call the SubtractFrom service operation.
+                value = 50.00D;
+                duplexClient.SubtractFrom(value);
+
+                // Call the MultiplyBy service operation.
+                value = 17.65D;
+                duplexClient.MultiplyBy(value);
+
+                // Call the DivideBy service operation.
+                value = 2.00D;
+                duplexClient.DivideBy(value);
+
+                // Complete equation.
+                duplexClient.Clear();
+
+                // Wait for callback messages to complete before
+                // closing.
+                System.Threading.Thread.Sleep(5000);
+
+                // Close the WCF client.
+                Console.WriteLine("Done!");
+                Console.ReadLine();
+                duplexClient.Close();
+            }
+            catch (TimeoutException timeProblem)
+            {
+                Console.WriteLine("The service operation timed out. " + timeProblem.Message);
+                duplexClient.Abort();
+                Console.Read();
+            }
+            catch (CommunicationException commProblem)
+            {
+                Console.WriteLine("There was a communication problem. " + commProblem.Message);
+                duplexClient.Abort();
+                Console.Read();
+            }
+        }
+
+        public class CallbackHandler : ICalculatorDuplexCallback
+        {
+            public void Equals(double result)
+            {
+                Console.WriteLine("Result ({0})", result);
+            }
+
+            public void Equation(string equation)
+            {
+                Console.WriteLine("Equation({0})", equation);
+            }
         }
     }
 }

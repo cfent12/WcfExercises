@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5ae177cb-bfd7-412c-b2be-3836a5b56687" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a1bd7fcb-164d-4298-8e1a-24c352e0a3b2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8888/WcfServiceLibrary/CalculatorService/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="988dedba-29d1-44d7-bcc2-91a26bc5a2f2" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/?xsd=xsd0" />
-    <MetadataFile FileName="CalculatorService.wsdl" MetadataType="Wsdl" ID="516f8e36-8030-4906-8c5c-e1c9ecc6bd21" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/?wsdl" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="04737a29-d0c0-4e9e-845b-137a1fba6717" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/?xsd=xsd1" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="13e9e3e5-90ab-4056-adb4-4ca045e917f9" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/?disco" />
-    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="d0308e27-1af3-4443-b559-135e59107a6a" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/?wsdl=wsdl0" />
+    <MetadataFile FileName="Microsoft.ServiceModel.Samples.wsdl" MetadataType="Wsdl" ID="29f7bf65-dc59-4e99-bd20-c7034f1937fd" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0aa21eee-73cc-4af8-b7e1-3fae4e8fed43" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" />
+    <MetadataFile FileName="Microsoft.ServiceModel.Samples.xsd" MetadataType="Schema" ID="5e037c62-5332-4750-b0db-097039430b38" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b6bc8d4c-57fe-4d65-b356-bff35fb1fa18" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" />
+    <MetadataFile FileName="WcfServiceLibrary.xsd" MetadataType="Schema" ID="de76b478-9126-451a-8084-22dfa373e5d7" SourceId="1" SourceUrl="http://localhost:8888/WcfServiceLibrary/CalculatorService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
