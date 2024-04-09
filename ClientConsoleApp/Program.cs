@@ -62,28 +62,45 @@ namespace ClientConsoleApp
             CalculatorDuplexClient duplexClient = new CalculatorDuplexClient(site);
             try
             {
-                // Call the AddTo service operation.
-                double value = 100.00D;
-                duplexClient.AddTo(value);
+                while (true)
+                {
+                    Console.WriteLine("\ninput: +  - * / Space");
 
-                // Call the SubtractFrom service operation.
-                value = 50.00D;
-                duplexClient.SubtractFrom(value);
+                    string input = Console.ReadLine();
+                    double value;
 
-                // Call the MultiplyBy service operation.
-                value = 17.65D;
-                duplexClient.MultiplyBy(value);
+                    switch (input)
+                    {
+                        case "+":
+                            value = 100.00D;
+                            duplexClient.AddTo(value);
+                            break;
+                        case "-":
+                            value = 50.00D;
+                            duplexClient.SubtractFrom(value);
+                            break;
+                        case "*":
+                            value = 17.65D;
+                            duplexClient.MultiplyBy(value);
+                            break;
+                        case "/":
+                            value = 2.00D;
+                            duplexClient.DivideBy(value);
+                            break;
+                        case "=":
+                            duplexClient.Clear();
+                            break;
+                    }
 
-                // Call the DivideBy service operation.
-                value = 2.00D;
-                duplexClient.DivideBy(value);
+                    if (input == " ") { break; }
+                    else { continue; }
 
-                // Complete equation.
-                duplexClient.Clear();
-
+                    System.Threading.Thread.Sleep(500);
+                }
+                
                 // Wait for callback messages to complete before
                 // closing.
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2000);
 
                 // Close the WCF client.
                 Console.WriteLine("Done!");
@@ -95,6 +112,18 @@ namespace ClientConsoleApp
                 Console.WriteLine("The service operation timed out. " + timeProblem.Message);
                 duplexClient.Abort();
                 Console.Read();
+            }
+            catch (FaultException<GreetingFault> greetingFault)
+            {
+                Console.WriteLine(greetingFault.Detail.Message);
+                Console.ReadLine();
+                duplexClient.Abort();
+            }
+            catch (FaultException unknownFault)
+            {
+                Console.WriteLine("An unknown exception was received. " + unknownFault.Message);
+                Console.ReadLine();
+                duplexClient.Abort();
             }
             catch (CommunicationException commProblem)
             {
@@ -108,12 +137,12 @@ namespace ClientConsoleApp
         {
             public void Equals(double result)
             {
-                Console.WriteLine("Result ({0})", result);
+                Console.WriteLine("Callback Result ({0})", result);
             }
 
             public void Equation(string equation)
             {
-                Console.WriteLine("Equation({0})", equation);
+                Console.WriteLine("Callback Equation({0})", equation);
             }
         }
     }

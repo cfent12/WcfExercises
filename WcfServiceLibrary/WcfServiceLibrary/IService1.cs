@@ -105,7 +105,10 @@ namespace WcfServiceLibrary
     // ICalculatorDuplex allows one to perform multiple operations on a running result.
     // The result is sent back after each operation on the ICalculatorCallback interface.
     [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples",
-                     SessionMode = SessionMode.Required, CallbackContract = typeof(ICalculatorDuplexCallback))] // 이중 계약 패턴 콜백
+                     SessionMode = SessionMode.Required, // Allowed: 클라이언트가 WCF 서비스 구현을 통해 세션 기반 바인딩을 사용하는 경우 서비스가 제공된 세션을 설정하고 사용
+                                                         // Required: 계약에 세션 바인딩이 필요함을 지정합니다. 세션을 지원하도록 바인딩이 구성되지 않은 경우 예외가 발생합니다.
+                                                         // NotAllowed: 계약이 세션을 시작하는 바인딩을 지원하지 않음을 지정합니다.
+                     CallbackContract = typeof(ICalculatorDuplexCallback))] // 이중 계약 패턴 콜백
     public interface ICalculatorDuplex
     {
         [OperationContract(IsOneWay = true)]

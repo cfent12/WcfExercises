@@ -143,17 +143,4 @@ namespace WcfServiceLibrary
             callback.Equals(result);
         }
     }
-
-    public class CalculatorDuplexCallbackService : ICalculatorDuplexCallback
-    {
-        public void Equals(double result)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Equation(string eqn)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
