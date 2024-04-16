@@ -54,7 +54,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfServiceLibrary\WcfServiceLibrary\WcfServiceLibrary.csproj">
+    <ProjectReference Include="..\WcfServiceLibrary\WcfServiceLibrary.csproj">
       <Project>{5b00b646-cdc4-4fd8-b37f-752180046b1d}</Project>
       <Name>WcfServiceLibrary</Name>
     </ProjectReference>
