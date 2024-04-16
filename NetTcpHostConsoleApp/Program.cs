@@ -63,8 +63,6 @@ namespace NetTcpHostConsoleApp
             if (host.State == CommunicationState.Opened)
             {
                 Console.WriteLine("The service is ready.");
-
-                // Close the ServiceHost to stop the service.
                 Console.WriteLine("Press <Enter> to terminate the service.");
                 Console.WriteLine();
                 Console.ReadLine();
