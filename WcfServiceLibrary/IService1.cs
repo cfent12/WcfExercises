@@ -133,4 +133,11 @@ namespace WcfServiceLibrary
         [OperationContract(IsOneWay = true)]
         void Equation(string eqn);
     }
+
+    [ServiceContract]
+    public interface ITcpService
+    {
+        [OperationContractAttribute]
+        string Hello(string greeting);
+    }
 }

@@ -6,8 +6,21 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceLibrary", "WcfServiceLibrary\WcfServiceLibrary.csproj", "{5B00B646-CDC4-4FD8-B37F-752180046B1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostConsoleApp", "HostConsoleApp\HostConsoleApp.csproj", "{A7873FC9-85D2-4C44-8C05-3B95E154399D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B00B646-CDC4-4FD8-B37F-752180046B1D} = {5B00B646-CDC4-4FD8-B37F-752180046B1D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsoleApp", "ClientConsoleApp\ClientConsoleApp.csproj", "{F15F3F6C-44EF-4D58-A060-41DE0390B99E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B00B646-CDC4-4FD8-B37F-752180046B1D} = {5B00B646-CDC4-4FD8-B37F-752180046B1D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTcpHostConsoleApp", "NetTcpHostConsoleApp\NetTcpHostConsoleApp.csproj", "{36CB1B51-1F45-4CC8-9D14-F765DD71484D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5B00B646-CDC4-4FD8-B37F-752180046B1D} = {5B00B646-CDC4-4FD8-B37F-752180046B1D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTcpClientConsoleApp", "NetTcpClientConsoleApp\NetTcpClientConsoleApp.csproj", "{1D8E85C8-7BA5-4CB6-A551-17DADE450418}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5B00B646-CDC4-4FD8-B37F-752180046B1D} = {5B00B646-CDC4-4FD8-B37F-752180046B1D}
 	EndProjectSection
@@ -30,6 +43,14 @@ Global
 		{F15F3F6C-44EF-4D58-A060-41DE0390B99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F15F3F6C-44EF-4D58-A060-41DE0390B99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F15F3F6C-44EF-4D58-A060-41DE0390B99E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36CB1B51-1F45-4CC8-9D14-F765DD71484D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36CB1B51-1F45-4CC8-9D14-F765DD71484D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36CB1B51-1F45-4CC8-9D14-F765DD71484D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36CB1B51-1F45-4CC8-9D14-F765DD71484D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D8E85C8-7BA5-4CB6-A551-17DADE450418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8E85C8-7BA5-4CB6-A551-17DADE450418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8E85C8-7BA5-4CB6-A551-17DADE450418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8E85C8-7BA5-4CB6-A551-17DADE450418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

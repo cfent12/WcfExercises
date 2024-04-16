@@ -94,8 +94,6 @@ namespace ClientConsoleApp
 
                     if (input == " ") { break; }
                     else { continue; }
-
-                    System.Threading.Thread.Sleep(500);
                 }
                 
                 // Wait for callback messages to complete before

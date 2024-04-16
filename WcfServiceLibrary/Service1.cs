@@ -143,4 +143,12 @@ namespace WcfServiceLibrary
             callback.Equals(result);
         }
     }
+
+    public class TcpService : ITcpService
+    {
+        public string Hello(string greeting)
+        {
+            return "Hi," + greeting;
+        }
+    }
 }
